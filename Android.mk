@@ -1,4 +1,6 @@
 LOCAL_PATH := $(call my-dir)
+
+ifeq ($(TW_FORCE_USE_BUSYBOX),)
 include $(CLEAR_VARS)
 
 TMP_LOCAL_PATH := $(LOCAL_PATH)
@@ -12,4 +14,4 @@ include $(TMP_LOCAL_PATH)/BluetoothExt/Android.mk
 include $(TMP_LOCAL_PATH)/hidtestapp/Android.mk
 include $(TMP_LOCAL_PATH)/bttestapp/Android.mk
 endif #TARGET_USE_QTI_BT_STACK
-
+endif
