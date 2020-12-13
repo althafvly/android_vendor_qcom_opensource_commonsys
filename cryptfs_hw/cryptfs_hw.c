@@ -68,9 +68,7 @@
 
 #define CRYPTFS_HW_ALGO_MODE_AES_XTS 			0x3
 
-#ifndef USE_METADATA_FOR_KEY
 #define METADATA_PARTITION_NAME "/dev/block/bootdevice/by-name/metadata"
-#endif
 
 enum cryptfs_hw_key_management_usage_type {
 	CRYPTFS_HW_KM_USAGE_DISK_ENCRYPTION		= 0x01,
@@ -367,7 +365,6 @@ int is_ice_enabled(void)
   int storage_type = 0;
   int fd;
 
-#ifndef USE_METADATA_FOR_KEY
   /*
    * Since HW FDE is a compile time flag (due to QSSI requirements),
    * this API conflicts with Metadata encryption even when ICE is
@@ -379,7 +376,6 @@ int is_ice_enabled(void)
     SLOGI("Metadata partition, returning false");
     return 0;
   }
-#endif
 
   if (property_get("ro.boot.bootdevice", prop_storage, "")) {
     if (strstr(prop_storage, "ufs")) {
